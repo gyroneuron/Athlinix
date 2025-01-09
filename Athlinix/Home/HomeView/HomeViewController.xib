@@ -36,25 +36,53 @@
                         <action selector="handleSignOut:" destination="-1" eventType="touchUpInside" id="Gmg-3Z-B3b"/>
                     </connections>
                 </button>
+                <tabBar contentMode="scaleToFill" fixedFrame="YES" itemPositioning="fill" translatesAutoresizingMaskIntoConstraints="NO" id="3SD-85-d2R">
+                    <rect key="frame" x="0.0" y="769" width="393" height="49"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <items>
+                        <tabBarItem title="Arena" image="Home" id="ekC-MA-vSj"/>
+                        <tabBarItem title="Explore" image="Explore" id="s7X-LS-uVE"/>
+                        <tabBarItem title="Profile" image="person" id="V66-Fv-tqe"/>
+                    </items>
+                    <color key="tintColor" red="0.99215686270000003" green="0.38921568620000002" blue="0.18823529410000001" alpha="1" colorSpace="calibratedRGB"/>
+                </tabBar>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NL9-IK-Axy">
+                    <rect key="frame" x="16" y="592.66666666666663" width="361" height="60"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="60" id="Ga3-Ea-Gng"/>
+                    </constraints>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="tinted" title="Go to Create Game Screen"/>
+                    <connections>
+                        <action selector="handleNavigateToCreateGame:" destination="-1" eventType="touchUpInside" id="auX-EE-IuZ"/>
+                    </connections>
+                </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
+                <constraint firstItem="NL9-IK-Axy" firstAttribute="top" secondItem="GAt-Fi-dSb" secondAttribute="bottom" constant="32" id="6a7-5g-xBX"/>
                 <constraint firstItem="aKP-2K-Iwg" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="7dd-ww-8Hf"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="GAt-Fi-dSb" secondAttribute="trailing" constant="16" id="CKn-dh-f6f"/>
                 <constraint firstItem="GAt-Fi-dSb" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="HCJ-Ps-BaD"/>
                 <constraint firstItem="GAt-Fi-dSb" firstAttribute="top" secondItem="aKP-2K-Iwg" secondAttribute="bottom" constant="64" id="VGo-Pt-0Jf"/>
                 <constraint firstItem="aKP-2K-Iwg" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="c42-2b-SC3"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="NL9-IK-Axy" secondAttribute="trailing" constant="16" id="v3X-0h-MPy"/>
+                <constraint firstItem="NL9-IK-Axy" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="w8y-ge-dua"/>
             </constraints>
             <point key="canvasLocation" x="64.885496183206101" y="20.422535211267608"/>
         </view>
     </objects>
     <resources>
+        <image name="Explore" width="18.666666030883789" height="18.666666030883789"/>
+        <image name="Home" width="29" height="20"/>
+        <image name="person" width="22" height="23"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemRedColor">
-            <color red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

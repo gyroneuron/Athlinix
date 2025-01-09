@@ -13,9 +13,37 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var appleButtonOutlet: UIButton!
     @IBOutlet weak var emailTFOutlet: UITextField!
     
+ 
+    
+    override func viewDidLoad() {
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+       
+    
+        self.view.addGestureRecognizer(tap)
+        super.viewDidLoad()
+        
+        self.googleButtonOutlet?.layer.cornerRadius = 15
+        self.googleButtonOutlet?.layer.borderWidth = 1
+        self.googleButtonOutlet?.layer.borderColor = UIColor.black.cgColor
+        self.appleButtonOutlet?.layer.cornerRadius = 15
+        self.appleButtonOutlet?.layer.borderWidth = 1
+        self.appleButtonOutlet?.layer.borderColor = UIColor.black.cgColor
+        
+
+    }
+    //MARK: To Dismiss Keyboard
+    @objc func dismissKeyboard(){
+        view.endEditing(true)
+        
+    }
     @IBOutlet weak var passwordTFOutlet: UITextField!
     
     @IBAction func handleForgotPassword(_ sender: Any) {
+        let vc = InviteViewController(nibName: "InviteViewController", bundle: nil)
+
+         self.navigationController!.pushViewController(vc, animated: true)
+ 
     }
     @IBAction func handleLogin(_ sender: Any) {
         
@@ -36,7 +64,7 @@ class LoginViewController: UIViewController {
                 
                 await MainActor.run {
                     hideLoadingIndicator()
-                    self.navigationController!.pushViewController(vc, animated: true)
+                    self.navigationController!.pushViewController(vc, animated: false)
                     showAlert(title: "Success", message: "Login Successfully")
                 }
                 
@@ -51,7 +79,7 @@ class LoginViewController: UIViewController {
     }
     @IBAction func handleSignUp(_ sender: Any) {
         let vc = SignUpViewController(nibName: "SignUpViewController", bundle: nil)
-         self.navigationController!.pushViewController(vc, animated: true)
+         self.navigationController!.pushViewController(vc, animated: false)
         self.navigationController?.navigationBar.isHidden = false
     }
     @IBAction func handleLoginWithGoogle(_ sender: Any) {
@@ -62,7 +90,7 @@ class LoginViewController: UIViewController {
     func showAlert(title: String, message: String = "") {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default))
-        self.present(alert, animated: true)
+        self.present(alert, animated: false)
     }
     
     func showLoadingIndicator() {
@@ -76,20 +104,7 @@ class LoginViewController: UIViewController {
         self.view.subviews.forEach { $0.removeFromSuperview() }
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        googleButtonOutlet.layer.cornerRadius = 15
-        googleButtonOutlet.layer.borderWidth = 1
-        googleButtonOutlet.layer.borderColor = UIColor.black.cgColor
-        
-        
-        appleButtonOutlet.layer.cornerRadius = 15
-        appleButtonOutlet.layer.borderWidth = 1
-        appleButtonOutlet.layer.borderColor = UIColor.black.cgColor
-        
-
-    }
+   
     
  
 

@@ -48,14 +48,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         func navigateToMainScreen() {
             let mainVC = HomeViewController(nibName: "HomeViewController", bundle: nil)
             let navigationVC = UINavigationController(rootViewController: mainVC)
-            
             window?.rootViewController = navigationVC
         }
         
         func navigateToLogin() {
             let loginVC = LoginViewController(nibName: "LoginViewController", bundle: nil)
             let navigationVC = UINavigationController(rootViewController: loginVC)
-            
             window?.rootViewController = navigationVC
         }
     }

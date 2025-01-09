@@ -14,6 +14,13 @@ class HomeViewController: UIViewController {
 
         // Do any additional setup after loading the view.
     }
+    @IBAction func handleNavigateToCreateGame(_ sender: Any) {
+        
+        let createGameVC = CreateGameViewController(nibName: "CreateGameViewController", bundle: nil)
+        
+        self.navigationController!.pushViewController(createGameVC, animated: true)
+        
+    }
     @IBAction func handleSignOut(_ sender: Any) {
         
         Task {
