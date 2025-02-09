@@ -10,6 +10,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LoginViewController" customModule="Athlinix" customModuleProvider="target">
             <connections>
+                <outlet property="EmailInputBox" destination="nhv-Sf-sJ2" id="hgX-f4-sLA"/>
+                <outlet property="LoginButtonOutlet" destination="Pta-aX-UnF" id="IVB-UW-bgX"/>
+                <outlet property="PasswordInputBox" destination="uXq-Tq-z2x" id="UCI-m2-zqv"/>
                 <outlet property="appleButtonOutlet" destination="rLE-kv-qSS" id="98j-Gj-1ji"/>
                 <outlet property="emailTFOutlet" destination="R3p-4M-JgJ" id="vp6-BR-ShH"/>
                 <outlet property="googleButtonOutlet" destination="6wx-gG-uEF" id="0c1-Kz-4GJ"/>
@@ -202,7 +205,7 @@
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGray6Color">
-            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

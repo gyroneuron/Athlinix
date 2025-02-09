@@ -39,21 +39,44 @@ class SignUpViewController: UIViewController {
         
         Task {
             do {
-                _ = try await AuthServices.shared.signUp(
+                let signUpResult = try await AuthServices.shared.signUp(
                     email: email,
                     password: password,
                     fullName: name
                 )
                 
+                
+                print("Signup Success id: \(signUpResult.id)")
+                
+                struct Profile: Encodable {
+                    let full_name: String
+                    let email: String
+                }
+                
+                
+                
+                let supabase = SupabaseManager.shared.supabase
+                let profileData = Profile( full_name: name, email: email)
+                
+                let response = try await supabase
+                    .from("Profiles")  // Access the 'profiles' table
+                    .insert(profileData)
+                    .execute()
+                
+                print(response.status)
+                
+                
                 await MainActor.run {
                     hideLoadingIndicator()
-                    
+                    let vc = LoginViewController(nibName: "LoginViewController", bundle: nil)
+                    self.navigationController!.pushViewController(vc, animated: true)
                     showAlert(title: "Signup Success", message: "You have successfully Registered to Athlinix")
+                    
                 }
             } catch {
                 await MainActor.run {
                     hideLoadingIndicator()
-                    showAlert(title: "Enxception", message: error.localizedDescription)
+                    showAlert(title: "Exception", message: error.localizedDescription)
                 }
             }
         }
@@ -100,22 +123,22 @@ class SignUpViewController: UIViewController {
         appleButtonOutlet.layer.borderWidth = 1
         appleButtonOutlet.layer.borderColor = UIColor.black.cgColor
     }
-
+    
     override func viewDidDisappear(_ animated: Bool) {
         
         
-
+        
+        
+    }
     
-    }
-
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destination.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }

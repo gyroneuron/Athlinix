@@ -81,23 +81,23 @@ class CoachProfile {
 }
 
 // MARK: - Team
-class Teams: Decodable {
-    let teamID: String
-    var teamName: String
-    var teamMotto: String
-    var teamLogo: String
-    var createdBy: String // Coach User ID
-    var dateCreated: Date
-
-    init(teamID: String, teamName: String, teamMotto: String, teamLogo: String, createdBy: String, dateCreated: Date) {
-        self.teamID = teamID
-        self.teamName = teamName
-        self.teamMotto = teamMotto
-        self.teamLogo = teamLogo
-        self.createdBy = createdBy
-        self.dateCreated = dateCreated
-    }
-}
+//class Teams: Decodable {
+//    let teamID: String
+//    var teamName: String
+//    var teamMotto: String
+//    var teamLogo: String
+//    var createdBy: String // Coach User ID
+//    var dateCreated: Date
+//
+//    init(teamID: String, teamName: String, teamMotto: String, teamLogo: String, createdBy: String, dateCreated: Date) {
+//        self.teamID = teamID
+//        self.teamName = teamName
+//        self.teamMotto = teamMotto
+//        self.teamLogo = teamLogo
+//        self.createdBy = createdBy
+//        self.dateCreated = dateCreated
+//    }
+//}
 
 
 // MARK: - Team Membership

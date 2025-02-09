@@ -9,8 +9,8 @@ import UIKit
 
 
 @objc protocol ButtonCelldelegate: AnyObject {
-    @objc func addButtonTapped()
-    @objc func logoButtonTapped()
+    func addButtonTapped(in cell: InivitePeopleCellTableViewCell)
+    func logoButtonTapped(in cell: InivitePeopleCellTableViewCell)
 }
 
 class InivitePeopleCellTableViewCell: UITableViewCell {
@@ -44,11 +44,11 @@ class InivitePeopleCellTableViewCell: UITableViewCell {
     }
     
     @IBAction func addButtonAction(_ sender: Any) {
-        self.delegate?.addButtonTapped()
+        self.delegate?.addButtonTapped(in: self)
     }
     
     @IBAction func logoButtonAction(_ sender: Any) {
-        self.delegate?.logoButtonTapped()
+        self.delegate?.logoButtonTapped(in: self)
     }
     
     

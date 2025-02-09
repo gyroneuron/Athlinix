@@ -10,7 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MemberCell" id="gTV-IL-0wX" customClass="TeamMemberCellCollectionViewCell" customModule="Athlinix" customModuleProvider="target">
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="TeamMemberCellCollectionViewCell" id="gTV-IL-0wX" customClass="TeamMemberCellCollectionViewCell" customModule="Athlinix" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="69" height="94"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -24,9 +24,8 @@
                                 <rect key="frame" x="4.6666666666666643" y="0.0" width="59.999999999999993" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H9c-qh-54O">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H9c-qh-54O">
                                 <rect key="frame" x="0.0" y="64" width="69" height="17"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -38,11 +37,14 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" systemColor="systemGray6Color"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="H9c-qh-54O" secondAttribute="trailing" id="5Wq-rN-yqx"/>
+                            <constraint firstItem="H9c-qh-54O" firstAttribute="leading" secondItem="Ta9-my-wzK" secondAttribute="leading" id="GOw-Om-kaK"/>
                             <constraint firstAttribute="trailing" secondItem="36G-M8-CQX" secondAttribute="trailing" id="QoG-6J-xPW"/>
                             <constraint firstItem="36G-M8-CQX" firstAttribute="leading" secondItem="Ta9-my-wzK" secondAttribute="leading" id="gEy-pr-oce"/>
                             <constraint firstAttribute="bottom" secondItem="36G-M8-CQX" secondAttribute="bottom" id="igB-ok-BSP"/>
+                            <constraint firstAttribute="bottom" secondItem="H9c-qh-54O" secondAttribute="bottom" constant="13" id="lue-LQ-n7N"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -56,6 +58,7 @@
             </constraints>
             <connections>
                 <outlet property="MemberAvatarOutlet" destination="WFp-a6-Lgt" id="0FN-j6-eb7"/>
+                <outlet property="MemberContainer" destination="Ta9-my-wzK" id="gQd-vb-c5C"/>
                 <outlet property="NameOutlet" destination="H9c-qh-54O" id="drL-KK-nR9"/>
                 <outlet property="UsernameOutlet" destination="36G-M8-CQX" id="WSB-LW-SuX"/>
             </connections>
@@ -63,11 +66,11 @@
         </collectionViewCell>
     </objects>
     <resources>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
         <systemColor name="systemGray2Color">
-            <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.68235294120000001" green="0.68235294120000001" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGray6Color">
+            <color red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

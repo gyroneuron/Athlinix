@@ -14,8 +14,8 @@ class SupabaseManager {
     private init() {}
     
     let supabase = SupabaseClient(
-        supabaseURL: URL(string: "https://dgtyuzggfumsbhbfejfz.supabase.co")!,
-        supabaseKey: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRndHl1emdnZnVtc2JoYmZlamZ6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzQ3NTAzNjgsImV4cCI6MjA1MDMyNjM2OH0.3lsWUfPiL3kSC_jzaKcK0Vy55vu75FXpW_nmUMeHELQ"
+        supabaseURL: URL(string: "https://qhucnpudqcnqruhtupjd.supabase.co")!,
+        supabaseKey: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFodWNucHVkcWNucXJ1aHR1cGpkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzQ2MjcyMDEsImV4cCI6MjA1MDIwMzIwMX0.oPXYqJZxjjnWt8USBzFWxJQhEjSiZCA4FczGYq82oVM"
     )
 }
 

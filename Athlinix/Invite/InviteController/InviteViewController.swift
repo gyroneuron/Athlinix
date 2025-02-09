@@ -7,10 +7,13 @@
 
 import UIKit
 
-class InviteViewController: UIViewController,ButtonCelldelegate {
-
-
+class InviteViewController: UIViewController {
+    
+    
     @IBOutlet weak var InvitePeopleTableViewOutlet: UITableView!
+    
+    private var teams: [TeamTable] = []
+    var delegate: InviteDelegate?
     
     // cell reuse id (cells that scroll out of view can be reused)
       let cellReuseIdentifier = "InivitePeopleCell"
@@ -29,8 +32,29 @@ class InviteViewController: UIViewController,ButtonCelldelegate {
         
         self.InvitePeopleTableViewOutlet.register(nib, forCellReuseIdentifier: "InivitePeopleCell")
         
-        
+        fetchTeams()
     }
+    
+    private func fetchTeams() {
+            Task {
+                do {
+                    let response: [TeamTable] = try await SupabaseManager.shared.supabase
+                        .from("teams")
+                        .select()
+                        .execute()
+                        .value
+                    
+                    self.teams = response
+                    print("Fetched Teams: \(response)")
+                    
+                    DispatchQueue.main.async {
+                        self.InvitePeopleTableViewOutlet.reloadData()
+                    }
+                } catch {
+                    print("Failed to fetch teams: \(error.localizedDescription)")
+                }
+            }
+        }
 
     
   
@@ -60,22 +84,60 @@ extension InviteViewController:UITableViewDataSource,UITableViewDelegate{
         return 1
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return arr.count
+        return teams.count
     }
   
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell:InivitePeopleCellTableViewCell = self.InvitePeopleTableViewOutlet.dequeueReusableCell(withIdentifier: "InivitePeopleCell") as! InivitePeopleCellTableViewCell
+        let team = teams[indexPath.row]
+        cell.nameLabelOutlet.text = team.teamName
+        cell.dateLabelOutlet.text = "Created on: \(team.createdBy)"
         
+        if let logoURL = team.teamLogo {
+//                cell.logoImageOutlet.kf.setImage(with: URL(string: logoURL))  // Assuming Kingfisher for image loading
+            print(!logoURL.isEmpty)
+            } else {
+                cell.logoImageOutlet.image = UIImage(named: "defaultTeamLogo")
+            }
         cell.delegate = self
+        cell.nameLabelOutlet.text = team.teamName
      return cell
     }
-    func addButtonTapped() {
-        print("Add button dab gaya")
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+            let selectedTeam = teams[indexPath.row]
+            delegate?.didSelectTeam(selectedTeam)
+            self.dismiss(animated: true, completion: nil)
+        }
+    
+    
+    
+//    func addButtonTapped() {
+//        print("Add button dab gaya")
+//        guard let indexPath = InvitePeopleTableViewOutlet.indexPath(for: cell ) else { return }
+//            let selectedTeam = teams[indexPath.row]
+//            delegate?.didSelectTeam(selectedTeam)
+//            print("Selected team: \(selectedTeam.teamName)")
+//    }
+//    
+//    func logoButtonTapped() {
+//        print("logo button dab gaya")
+//    }
+    
+}
+
+extension InviteViewController: ButtonCelldelegate {
+    
+    func addButtonTapped(in cell: InivitePeopleCellTableViewCell) {
+        guard let indexPath = InvitePeopleTableViewOutlet.indexPath(for: cell) else { return }
+        let selectedTeam = teams[indexPath.row]
+        delegate?.didSelectTeam(selectedTeam)
+        print("Selected team: \(selectedTeam.teamName)")
+        self.dismiss(animated: true, completion: nil)
     }
     
-    func logoButtonTapped() {
-        print("logo button dab gaya")
+    func logoButtonTapped(in cell: InivitePeopleCellTableViewCell) {
+        print("Logo button tapped for cell at index: \(InvitePeopleTableViewOutlet.indexPath(for: cell)?.row ?? -1)")
     }
-    
 }

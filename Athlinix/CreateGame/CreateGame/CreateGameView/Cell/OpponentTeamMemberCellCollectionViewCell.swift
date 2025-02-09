@@ -20,9 +20,9 @@ class OpponentTeamMemberCellCollectionViewCell: UICollectionViewCell {
         // Initialization code
     }
     
-    func configure(with member: TeamMembership) {
+    func configure(with member: TeamMembershipTable) {
             // Configure your cell here
-        NameOutlet.text = member.userID // Assuming TeamMembership has a name property
+        NameOutlet.text = member.membershipID.uuidString // Assuming TeamMembership has a name property
             // Configure other UI elements based on your TeamMembership model
         }
 

@@ -13,13 +13,54 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
-        // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
-        // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
-        guard let _ = (scene as? UIWindowScene) else { return }
+            checkAuthenticationStatus()
+            
+            // Handle deep link if the app was launched from one
+            if let urlContext = connectionOptions.urlContexts.first {
+                handleDeepLink(urlContext.url)
+            }
+        }
+    
+    func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
+            // Handle deep link when the app is already running
+            guard let url = URLContexts.first?.url else { return }
+            handleDeepLink(url)
+        }
+    
+    private func handleDeepLink(_ url: URL) {
+        print("⚡️ Received Deep Link in SceneDelegate: \(url.absoluteString)") // Debug log
+
+        // Convert URL query parameters into a dictionary
+        if let components = URLComponents(url: url, resolvingAgainstBaseURL: true),
+           let queryItems = components.queryItems {
+            
+            for queryItem in queryItems {
+                print("🔍 Query Parameter: \(queryItem.name) = \(queryItem.value ?? "nil")") // Debugging log
+
+                if queryItem.name == "code", let resetCode = queryItem.value {
+                    print("✅ Reset Code Found: \(resetCode)")
+
+                    // Navigate to ResetPasswordViewController with reset code
+                    let resetVC = ResetPasswordViewController(nibName: "ResetPasswordViewController", bundle: nil)
+                    resetVC.resetCode = resetCode 
+                    let navController = UINavigationController(rootViewController: resetVC)
+
+                    if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
+                        let window = UIWindow(windowScene: windowScene)
+                        window.rootViewController = navController
+                        self.window = window
+                        window.makeKeyAndVisible()
+                    }
+                    return
+                }
+            }
+        }
         
-        checkAuthenticationStatus()
+        print("❌ No valid reset code found in deep link.")
     }
+
+    
+    
     
     private func checkAuthenticationStatus() {
             Task {
@@ -46,9 +87,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             }
         
         func navigateToMainScreen() {
-            let mainVC = HomeViewController(nibName: "HomeViewController", bundle: nil)
-            let navigationVC = UINavigationController(rootViewController: mainVC)
-            window?.rootViewController = navigationVC
+            let tabBarController = TabBarController()
+                window?.rootViewController = tabBarController
+                window?.makeKeyAndVisible()
         }
         
         func navigateToLogin() {

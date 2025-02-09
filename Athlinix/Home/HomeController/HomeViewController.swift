@@ -8,10 +8,12 @@
 import UIKit
 
 class HomeViewController: UIViewController {
+    
+    var window: UIWindow?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
         // Do any additional setup after loading the view.
     }
     @IBAction func handleNavigateToCreateGame(_ sender: Any) {
@@ -28,8 +30,13 @@ class HomeViewController: UIViewController {
                 showLoadingIndicator()
                 try await AuthServices.shared.signOut()
                 
-                let loginVC = LoginViewController()
-                navigationController?.pushViewController(loginVC, animated: true)
+                let loginVC = LoginViewController(nibName: "LoginViewController", bundle: nil)
+                                    let navigationVC = UINavigationController(rootViewController: loginVC)
+                window?.rootViewController = navigationVC
+                window?.makeKeyAndVisible()
+//                navigationController?.pushViewController(loginVC, animated: true)
+                
+                
                 hideLoadingIndicator()
             } catch {
                 hideLoadingIndicator()
@@ -39,6 +46,8 @@ class HomeViewController: UIViewController {
         
         
     }
+    
+    
     
     
     func showAlert(title: String, message: String = "") {

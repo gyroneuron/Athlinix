@@ -8,6 +8,8 @@
 import UIKit
 
 class TeamMemberCellCollectionViewCell: UICollectionViewCell {
+    
+    @IBOutlet weak var MemberContainer: UIView!
     @IBOutlet weak var MemberAvatarOutlet: UIImageView!
     
     @IBOutlet weak var UsernameOutlet: UILabel!
@@ -15,11 +17,18 @@ class TeamMemberCellCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        setupUI()
     }
     
-    func configure(with member: TeamMembership) {
+    func setupUI() {
+        MemberContainer.layer.cornerRadius = 10
+        MemberContainer.clipsToBounds = true
+    }
+    
+
+    func configure(with member: TeamMembershipTable) {
             // Configure your cell here
-        NameOutlet.text = member.userID // Assuming TeamMembership has a name property
+        NameOutlet.text = member.membershipID.uuidString // Assuming TeamMembership has a name property
             // Configure other UI elements based on your TeamMembership model
         }
 
